@@ -1,6 +1,6 @@
 <script lang="ts">
 
-let {count} = $props();
+let {count, buyItem} = $props();
 
 const products = [
     {name: 'Pointeur', price: 10, id: 'cursor'},
@@ -16,7 +16,7 @@ const products = [
 <ul>
     {#each products as product}
         <li>
-            <button disabled={count < product.price}> {product.name} {product.price} frites
+            <button onclick={()=>buyItem(product)} disabled={count < product.price}> {product.name} {product.price} frites
                 <img class="product-image" src={`/products/${product.id}.png`} alt="">
             </button>
         </li>
