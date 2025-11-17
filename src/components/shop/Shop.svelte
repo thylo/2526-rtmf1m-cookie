@@ -1,11 +1,12 @@
-<script lang="ts">
+<script lang="js">
 
-let {count} = $props();
+let {count, onShopClick} = $props();
 
 const products = [
     {name: 'Pointeur', price: 10, id: 'cursor'},
     {name: 'Moules', price: 20, id: 'moules'},
     {name: 'Grand-mere', price: 30, id: 'grand_mere'},
+    {name: 'Friterie', price: 50, id: 'friterie'},
 ];
 
 </script>
@@ -16,7 +17,7 @@ const products = [
 <ul>
     {#each products as product}
         <li>
-            <button disabled={count < product.price}> {product.name} {product.price} frites
+            <button disabled={count < product.price} onclick={()=>onShopClick(product)}> {product.name} {product.price} frites
                 <img class="product-image" src={`/products/${product.id}.png`} alt="">
             </button>
         </li>

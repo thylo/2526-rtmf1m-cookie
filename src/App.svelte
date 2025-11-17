@@ -1,13 +1,24 @@
-<script lang="ts">
+<script lang="js">
+    import Inventory from "./components/Inventory.svelte";
   import Shop from "./components/shop/Shop.svelte";
 
 
   let count = $state(0);
 
+  let inventory =$state([]);
+
   function onCookieClick(){
     console.log('click');
     count ++;
   };
+
+  function onShopClick(product){
+    count-=product.price;
+    inventory = [...inventory, product] // ajoute le produit dans l'inventaire, équivalent de .push()
+}
+
+$inspect(inventory) // équivalent de console.log à chaque refresh de inventory
+
 </script>
 
 <main class="application">
@@ -18,9 +29,11 @@
     </button>
   </div>
   <div class="inventory">
+    {inventory}
+    <Inventory count={count}/>
   </div>
   <div class="shop">
-    <Shop count={count} />
+    <Shop count={count} {onShopClick}/>
   </div>
 </main>
 
