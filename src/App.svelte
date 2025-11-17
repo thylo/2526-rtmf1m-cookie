@@ -29,7 +29,7 @@
     </button>
   </div>
   <div class="inventory">
-      <Inventory />
+      <Inventory {inventory} />
   </div>
   <div class="shop">
     <Shop count={count} {buyItem}/>

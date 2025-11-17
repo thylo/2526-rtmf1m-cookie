@@ -1,12 +1,11 @@
 <script lang="ts">
-    import Item from "./Item.svelte";
+    import {groupBy} from 'lodash';
 
-    const inventory = [
-        {id: 'cursor', count: 10},
-        {id: 'moules', count: 2},
-        {id: 'grand_mere', count: 3},
-    ];
+    const {inventory} = $props();
 
+    let groupedInventory = $derived(groupBy(inventory, 'id'));
+
+    $inspect(groupedInventory);
 </script>
 
 <div class="c-inventory">
@@ -15,7 +14,7 @@
     <ul>
         {#each inventory as product}
             <li>
-                <Item {product} />
+                {product.id}
             </li>
         {/each}
     </ul>
